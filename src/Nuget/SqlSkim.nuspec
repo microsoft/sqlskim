@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$major$.$minor$.$patch$$prerelease$</version>
+    <title>Microsoft SqlSkim Analysis Tools (x86/x64)</title>
+    <authors>@michaelcfanning,@nguerrera</authors>
+    <owners>@michaelcfanning,@nguerrera</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A database and TSQL checker</description>
+    <releaseNotes>Version $major$.$minor$.$patch$$prerelease$ of SqlSkim</releaseNotes>
+    <copyright>Copyright Microsoft 2015</copyright>    
+    <licenseUrl>https://github.com/microsoft/sqlskim/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/microsoft/sqlskim</projectUrl>
+    <tags>sql tsql linter security</tags>
+  </metadata>
+  <files>
+    <!-- tools\x64 -->
+    <file src="x64_Release\SqlSkim.exe" target="tools\x64" />
+    <file src="x64_Release\SqlSkim.pdb" target="tools\x64" />
+    <file src="x64_Release\SqlSkim.Parsers.dll" target="tools\x64" />
+    <file src="x64_Release\SqlSkim.Parsers.pdb" target="tools\x64" />
+    <file src="x64_Release\SqlSkim.Sdk.dll" target="tools\x64" />
+    <file src="x64_Release\SqlSkim.Sdk.pdb" target="tools\x64" />
+    <file src="x64_Release\SqlSkim.Rules.dll" target="tools\x64" />
+    <file src="x64_Release\SqlSkim.Rules.pdb" target="tools\x64" />
+
+    <!-- tools\x86 -->
+    <file src="x86_Release\SqlSkim.exe" target="tools\x86" />
+    <file src="x86_Release\SqlSkim.pdb" target="tools\x86" />
+    <file src="x86_Release\SqlSkim.Parsers.dll" target="tools\x86" />
+    <file src="x86_Release\SqlSkim.Parsers.pdb" target="tools\x86" />
+    <file src="x86_Release\SqlSkim.Sdk.dll" target="tools\x86" />
+    <file src="x86_Release\SqlSkim.Sdk.pdb" target="tools\x86" />
+    <file src="x86_Release\SqlSkim.Rules.dll" target="tools\x86" />
+    <file src="x86_Release\SqlSkim.Rules.pdb" target="tools\x86" />
+
+    <file src="..\..\..\src\SqlSkim.Parsers\**\*.cs" target="src\SqlSkim.Parsers" />
+    <file src="..\..\..\src\SqlSkim.Driver\**\*.cs" target="src\SqlSkim.Driver" />
+    <file src="..\..\..\src\SqlSkim.Rules\**\*.cs" target="src\SqlSkim.Rules" />
+    <file src="..\..\..\src\SqlSkim.Sdk\**\*.cs" target="src\SqlSkim.Sdk" />
+  </files>
+</package>
