@@ -3,14 +3,15 @@
 
 using System.Collections.Generic;
 using System.Reflection;
-using Microsoft.CodeAnalysis.Driver.Sdk;
+
+using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
 using Microsoft.CodeAnalysis.Sql.Rules;
 
 namespace Microsoft.CodeAnalysis.Sql
 {
     internal class ExportRulesMetadataCommand : ExportRulesMetadataCommandBase
     {
-        public override IEnumerable<Assembly> DefaultExportAssemblies
+        public override IEnumerable<Assembly> DefaultPlugInAssemblies
         {
             get
             {
