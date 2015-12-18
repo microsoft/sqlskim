@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using Microsoft.CodeAnalysis.Driver.Sdk;
-
 using CommandLine;
+
+using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
 
 namespace Microsoft.CodeAnalysis.Sql
 {
@@ -12,9 +12,11 @@ namespace Microsoft.CodeAnalysis.Sql
         internal static int Main(string[] args)
         {
             return Parser.Default.ParseArguments<
+                AnalyzeOptions,
                 ExportConfigurationOptions,
                 ExportRulesMetadataOptions>(args)
                 .MapResult(
+                (AnalyzeOptions analyzeOptions) => new AnalyzeCommand().Run(analyzeOptions),
                 (ExportConfigurationOptions exportConfigurationOptions) => new ExportConfigurationCommand().Run(exportConfigurationOptions),
                 (ExportRulesMetadataOptions exportRulesMetadataOptions) => new ExportRulesMetadataCommand().Run(exportRulesMetadataOptions),
                 errs => 1);

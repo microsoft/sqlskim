@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Reflection;
 
 using Microsoft.CodeAnalysis.Sql.Rules;
-using Microsoft.CodeAnalysis.Driver.Sdk;
+using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
 
 namespace Microsoft.CodeAnalysis.Sql
 {
     internal class ExportConfigurationCommand : ExportConfigurationCommandBase
     {
-        public override IEnumerable<Assembly> DefaultExportAssemblies
+        public override IEnumerable<Assembly> DefaultPlugInAssemblies
         {
             get
             {
@@ -20,5 +20,7 @@ namespace Microsoft.CodeAnalysis.Sql
                 };
             }
         }
+
+        public override string Prerelease { get; }
     }
 }

@@ -1,10 +1,17 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using System.Collections.Generic;
+
+using CommandLine;
+
+using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
 
 namespace Microsoft.CodeAnalysis.Sql
 {
-    class AnalyzeOptions
+    [Verb("analyze", HelpText = "Analyze one or more SQl files for security and correctness issues.")]
+    public class AnalyzeOptions : AnalyzeOptionsBase
     {
+        // We currently implement no options over the base configuration
     }
 }
