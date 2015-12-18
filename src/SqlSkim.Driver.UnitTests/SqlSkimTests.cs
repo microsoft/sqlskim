@@ -8,9 +8,9 @@ namespace Microsoft.CodeAnalysis.Sql
     public class SqlSkimTests
     {
         [Fact]
-        public void Driver_MainSucceeds()
+        public void Driver_MainWithNoArgsFails()
         {
-            Assert.Equal(0, SqlSkim.Main(null));
+            Assert.Equal(1, SqlSkim.Main(new string[] { }));
         }
     }
 }

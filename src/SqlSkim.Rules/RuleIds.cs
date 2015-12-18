@@ -3,7 +3,10 @@
 
 namespace Microsoft.CodeAnalysis.Sql
 {
-    class ExportOptionsCommand
+    public static class RuleIds
     {
+        public const string RemoveUnusedVariables = "SQL2001";
+
+        public const string AvoidVariableLengthTypesOfSmallSize = "SQL2009";
     }
 }
