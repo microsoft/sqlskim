@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Resources;
 
 using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
 
@@ -10,6 +11,6 @@ namespace Microsoft.CodeAnalysis.Sql.Sdk
 {
     public abstract class SqlSkimmerBase : SkimmerBase<SqlFileContext>, ISqlSkimmer
     {
-        public abstract IEnumerable<Type> Types { get; }
+        public abstract IEnumerable<Type> Types { get; }        
     }
 }

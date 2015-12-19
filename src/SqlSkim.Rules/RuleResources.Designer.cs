@@ -79,11 +79,20 @@ namespace Microsoft.CodeAnalysis.Sql.Rules {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The data type for column &apos;{0}&apos; was defined as {1} of a small size ({2}) which may incur additional storage and performance costs. Declare this data type as a fixed size or ignore the warning in cases performance is not a concern..
+        /// </summary>
+        internal static string SQL2009_Default {
+            get {
+                return ResourceManager.GetString("SQL2009_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An inclusive integer value that specifies the upper-bound of what is regarded as a type of small size. A value of 2, for example, configures analysis to regard any type of size 1 or 2 to be regarded as small..
         /// </summary>
-        internal static string SQL2009_AvoidVariableLengthTypesOfSmallSize_SmallSizeThreshold_Description {
+        internal static string SQL2009_SmallSizeThreshold_Description {
             get {
-                return ResourceManager.GetString("SQL2009_AvoidVariableLengthTypesOfSmallSize_SmallSizeThreshold_Description", resourceCulture);
+                return ResourceManager.GetString("SQL2009_SmallSizeThreshold_Description", resourceCulture);
             }
         }
     }

@@ -4,6 +4,6 @@
     <StartArguments>exportRules d:\repros\sqlskim.rules.xml</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>visit d:\repros\test.sql</StartArguments>
+    <StartArguments>analyze d:\repros\test.sql</StartArguments>
   </PropertyGroup>
 </Project>
