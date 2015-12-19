@@ -62,7 +62,13 @@ namespace Microsoft.CodeAnalysis.Sql
                 region.StartLine = parseError.Line;
                 region.StartColumn = parseError.Column;
 
-                string message = ConsoleLogger.GetMessageText(context, parseError.Message, ResultKind.Error, region);
+                string message = ConsoleLogger.GetMessageText(
+                    context.TargetUri, 
+                    ErrorDescriptors.ParseError.Id, 
+                    parseError.Message, 
+                    ResultKind.Error, 
+                    region);
+
                 Console.WriteLine(message);
             }
         }
