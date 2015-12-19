@@ -19,7 +19,7 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
         /// <summary>
         /// SQL2009
         /// </summary>
-        public override string Id { get { return RuleIds.RemoveUnusedVariables; } }
+        public override string Id { get { return RuleIds.AvoidVariableLengthTypesOfSmallSize; } }
 
         /// <summary>
         /// SQL2009: When you use data types of variable length such as VARCHAR, NVARCHAR, and
@@ -64,6 +64,18 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
                 defaultValue: () => { return 2; },
                 description: RuleResources.SQL2009_SmallSizeThreshold_Description);
 
+        public override AnalysisApplicability CanAnalyze(SqlFileContext context, out string reasonIfNotApplicable)
+        {
+            reasonIfNotApplicable = null;
+            AnalysisApplicability result = AnalysisApplicability.ApplicableToSpecifiedTarget;
+            if (context.Policy == null)
+            {
+                reasonIfNotApplicable = RuleResources.SQL2009_MissingConfig;
+                result = AnalysisApplicability.NotApplicableDueToMissingConfiguration;
+            }
+            return result;
+        }
+
         public override void Analyze(SqlFileContext context)
         {
             var visitor = new Visitor(context);
@@ -90,10 +102,11 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
                 SqlDataTypeReference sdtr = node.DataType as SqlDataTypeReference;
                 if (sdtr == null) { return; }
 
-                if (sdtr.SqlDataTypeOption != SqlDataTypeOption.VarChar &&
+                if (sdtr.SqlDataTypeOption != SqlDataTypeOption.VarBinary &&
+                    sdtr.SqlDataTypeOption != SqlDataTypeOption.VarChar &&
                     sdtr.SqlDataTypeOption != SqlDataTypeOption.NVarChar)
                 {
-                    // SqlDataTypeOption.VarBinary?
+
                     return;
                 }
 
@@ -101,7 +114,7 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
                 {
                     int size = Int32.Parse(sdtr.Parameters[0].Value);
 
-                    if (size > context.Policy.GetProperty(SmallSizeThreshold))
+                    if (size <= context.Policy.GetProperty(SmallSizeThreshold))
                     {
                         // The data type for column '{0}' was defined as {1} of a 
                         // small size ({2}) which may incur additional storage and 

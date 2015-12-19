@@ -79,11 +79,20 @@ namespace Microsoft.CodeAnalysis.Sql.Rules {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The data type for column &apos;{0}&apos; was defined as {1} of a small size ({2}) which may incur additional storage and performance costs. Declare this data type as a fixed size or ignore the warning in cases performance is not a concern..
+        ///   Looks up a localized string similar to The data type for column &apos;{0}&apos; was defined as type {1} of size ({2}) which may incur additional storage and performance costs over a fixed length type. Declare this column as a fixed size data type or ignore the warning if performance is not a concern..
         /// </summary>
         internal static string SQL2009_Default {
             get {
                 return ResourceManager.GetString("SQL2009_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to size threshold for designating small variable type column definitions.
+        /// </summary>
+        internal static string SQL2009_MissingConfig {
+            get {
+                return ResourceManager.GetString("SQL2009_MissingConfig", resourceCulture);
             }
         }
         

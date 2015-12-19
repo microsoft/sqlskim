@@ -21,11 +21,13 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
             }
         }
 
+        private static Uri s_helpUri = new Uri("https://github.com/microsoft/sqlskim");
+
         public override Uri HelpUri
         {
             get
             {
-                throw new NotImplementedException();
+                return s_helpUri;
             }
         }
     }

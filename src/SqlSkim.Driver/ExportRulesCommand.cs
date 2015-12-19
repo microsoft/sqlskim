@@ -16,7 +16,7 @@ namespace Microsoft.CodeAnalysis.Sql
             get
             {
                 return new Assembly[] {
-                    typeof(RemoveUnusedVariables).Assembly
+                    typeof(AvoidVariableLengthTypesOfSmallSize).Assembly
                 };
             }
         }
