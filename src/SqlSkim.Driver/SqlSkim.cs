@@ -12,10 +12,12 @@ namespace Microsoft.CodeAnalysis.Sql
         internal static int Main(string[] args)
         {
             return Parser.Default.ParseArguments<
+                VisitOptions,
                 AnalyzeOptions,
                 ExportConfigurationOptions,
                 ExportRulesMetadataOptions>(args)
                 .MapResult(
+                (VisitOptions visitOptions) => new VisitCommand().Run(visitOptions),
                 (AnalyzeOptions analyzeOptions) => new AnalyzeCommand().Run(analyzeOptions),
                 (ExportConfigurationOptions exportConfigurationOptions) => new ExportConfigurationCommand().Run(exportConfigurationOptions),
                 (ExportRulesMetadataOptions exportRulesMetadataOptions) => new ExportRulesMetadataCommand().Run(exportRulesMetadataOptions),

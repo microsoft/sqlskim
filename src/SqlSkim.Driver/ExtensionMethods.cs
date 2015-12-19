@@ -1,18 +1,23 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
 using Microsoft.CodeAnalysis.Sarif.Sdk;
-
+using Microsoft.CodeAnalysis.Sql.Rules;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 
-namespace Microsoft.CodeAnalysis.Sql.Sdk
+namespace Microsoft.CodeAnalysis.Sql
 {
-    public interface ISqlSkimmer : ISkimmer<SqlFileContext>, IRuleDescriptor
+    internal static class ExtensionMethod
     {
-        IEnumerable<Type> Types { get; }
+        public static Result ToResult(this ParseError parseError)
+        {
+            var result = new Result();
+
+            return result;
+        }
     }
 }
