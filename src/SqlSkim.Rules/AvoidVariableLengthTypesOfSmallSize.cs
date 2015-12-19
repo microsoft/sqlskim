@@ -1,13 +1,15 @@
 ﻿// Copyright(c) Microsoft.All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Composition;
 
-using Microsoft.CodeAnalysis.Driver.Sdk;
+using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
 using Microsoft.CodeAnalysis.Sarif.Sdk;
 using Microsoft.CodeAnalysis.Sql.Sdk;
+using Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Microsoft.CodeAnalysis.Sql.Rules
 {
@@ -22,7 +24,7 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
     /// you will cause data movement if you change a column from variable to fixed length in
     /// a table that is not empty.
     /// </summary>
-    [Export(typeof(ISqlSkimmer)), Export(typeof(IRuleDescriptor)), Export(typeof(IOptionsProvider))]
+    [Export(typeof(ISkimmer<SqlFileContext>)), Export(typeof(IRuleDescriptor)), Export(typeof(IOptionsProvider))]
     public class AvoidVariableLengthTypesOfSmallSize : SqlSkimmerBase, IOptionsProvider
     {
         public override string Id { get { return RuleIds.RemoveUnusedVariables; } }
@@ -53,7 +55,32 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
 
         public override void Analyze(SqlFileContext context)
         {
+            var visitor = new Visitor(context);
+            context.GetTSqlFragment().Accept(visitor);
             return;
+        }
+
+        public override IEnumerable<Type> Types { get { 
+               return new Type[] { typeof(SqlDataTypeReference) };
+            }
+        }
+
+        private class Visitor : TSqlConcreteFragmentVisitor
+        {
+            private SqlFileContext context; 
+
+            public Visitor(SqlFileContext context) { this.context = context; }
+
+            public override void Visit(ColumnDefinition node)
+            {
+                this.context.Logger.Log(ResultKind.Note, this.context, "Found a column definition");
+
+            }
+            public override void ExplicitVisit(ColumnDefinition node)
+            {
+                this.context.Logger.Log(ResultKind.Note, this.context, "Found a column definition");
+
+            }
         }
     }
 }

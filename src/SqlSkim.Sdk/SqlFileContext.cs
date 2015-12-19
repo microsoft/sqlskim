@@ -7,6 +7,7 @@ using System.IO;
 
 using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
 using Microsoft.CodeAnalysis.Sarif.Sdk;
+using Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Microsoft.CodeAnalysis.Sql
 {
@@ -14,13 +15,50 @@ namespace Microsoft.CodeAnalysis.Sql
     {
         private static HashSet<string> ValidFileExtensions = new HashSet<string>(
             new string[] { ".sql" }, StringComparer.OrdinalIgnoreCase);
-    
+
+        private object lockObject;
+        private TSqlFragment tsqlFragment;
+
+        public SqlFileContext()
+        {
+            this.lockObject = new object();
+        }
+
         public bool IsValidAnalysisTarget
         {
             get
             {
                 return ValidFileExtensions.Contains(Path.GetExtension(this.TargetUri.LocalPath));
             }
+        }
+
+        public TSqlFragment GetTSqlFragment()
+        {
+            if (this.tsqlFragment != null)
+            {
+                return this.tsqlFragment;
+            }
+
+            lock (this.lockObject)
+            {
+                if (this.tsqlFragment == null)
+                {
+                    var parser = new TSql120Parser(initialQuotedIdentifiers: false);
+
+                    IList<ParseError> errors;
+                    using (StringReader reader = new StringReader(File.ReadAllText(TargetUri.LocalPath)))
+                    {
+                        this.tsqlFragment = parser.Parse(reader, out errors);
+                    }
+
+                    if (errors.Count > 0)
+                    {
+                        // TODO 
+                        throw new InvalidOperationException();
+                    }
+                }
+            }
+            return this.tsqlFragment;
         }
 
         public IResultLogger Logger { get; set; }
