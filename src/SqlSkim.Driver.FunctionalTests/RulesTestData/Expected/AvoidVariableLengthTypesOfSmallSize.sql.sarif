@@ -1,0 +1,82 @@
+{
+  "version": "0.4",
+  "runLogs": [
+    {
+      "toolInfo": {
+        "name": "Sarif.Driver",
+        "fullName": "Sarif.Driver 1.0.13-beta",
+        "version": "1.0.13"
+      },
+      "runInfo": {
+        "invocationInfo": "\"C:\\src\\sqlskim\\bld\\bin\\SqlSkim.Driver\\AnyCPU_Release\\SqlSkim.exe\"  analyze C:\\src\\sqlskim\\src\\SqlSkim.Driver.FunctionalTests\\RulesTestData\\AvoidVariableLengthTypesOfSmallSize.sql --output C:\\src\\sqlskim\\src\\SqlSkim.Driver.FunctionalTests\\RulesTestData\\Expected\\AvoidVariableLengthTypesOfSmallSize.sql.sarif.temp --verbose --config default",
+        "analysisTargets": [
+          {
+            "uri": "file:///C:/src/sqlskim/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql"
+          }
+        ]
+      },
+      "results": [
+        {
+          "ruleId": "MSG1001",
+          "kind": "Note",
+          "fullMessage": "Analyzing 'AvoidVariableLengthTypesOfSmallSize.sql'...",
+          "locations": [
+            {
+              "analysisTarget": [
+                {
+                  "uri": "file:///C:/src/sqlskim/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql",
+                  "mimeType": "application/octet-stream"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "SQL2009",
+          "kind": "Warning",
+          "fullMessage": "The data type for column 'SmallBinary' was defined as type VarBinary of size (1) which may incur additional storage and performance costs over a fixed length type. Declare this column as a fixed size data type or ignore the warning if performance is not a concern.",
+          "locations": [
+            {
+              "analysisTarget": [
+                {
+                  "uri": "file:///C:/src/sqlskim/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql",
+                  "mimeType": "application/octet-stream"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "SQL2009",
+          "kind": "Warning",
+          "fullMessage": "The data type for column 'SmallUnicodeString' was defined as type NVarChar of size (1) which may incur additional storage and performance costs over a fixed length type. Declare this column as a fixed size data type or ignore the warning if performance is not a concern.",
+          "locations": [
+            {
+              "analysisTarget": [
+                {
+                  "uri": "file:///C:/src/sqlskim/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql",
+                  "mimeType": "application/octet-stream"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "SQL2009",
+          "kind": "Warning",
+          "fullMessage": "The data type for column 'SmallString' was defined as type VarChar of size (2) which may incur additional storage and performance costs over a fixed length type. Declare this column as a fixed size data type or ignore the warning if performance is not a concern.",
+          "locations": [
+            {
+              "analysisTarget": [
+                {
+                  "uri": "file:///C:/src/sqlskim/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql",
+                  "mimeType": "application/octet-stream"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

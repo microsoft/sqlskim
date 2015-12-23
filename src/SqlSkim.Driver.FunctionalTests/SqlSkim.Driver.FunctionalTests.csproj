@@ -2,7 +2,7 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" />
   <PropertyGroup>
-    <ProjectGuid>{477AE8D6-2D38-4B85-90A9-E869AAA9D1FD}</ProjectGuid>
+    <ProjectGuid>{9E73C78B-DBE2-4ED1-888F-6610F0E73E70}</ProjectGuid>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -10,7 +10,7 @@
     <RootNamespace>Microsoft.CodeAnalysis.Sql</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyName>SqlSkim.Rules.UnitTests</AssemblyName>
+    <AssemblyName>SqlSkim.Driver.UnitTests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -20,6 +20,10 @@
   </PropertyGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., build.props))\build.props" />
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Sarif, Version=1.4.14.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sarif.Sdk.1.4.14-beta\lib\net40\Sarif.dll</HintPath>
       <Private>True</Private>
@@ -52,8 +56,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\Shared\SharedAssemblyInfo.cs" />
+    <Compile Include="BuiltInRuleFunctionalTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SqlSkim.Driver\SqlSkim.Driver.csproj">
+      <Project>{8f4bdd7a-cf06-4d41-8d0e-c78aa055c759}</Project>
+      <Name>SqlSkim.Driver</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SqlSkim.Parsers\SqlSkim.Parsers.csproj">
       <Project>{d87c16f2-a31e-43df-9657-854add3b39d9}</Project>
       <Name>SqlSkim.Parsers</Name>
@@ -65,9 +74,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="UpdateBaselines.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RulesTestData\AvoidVariableLengthTypesOfSmallSize.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -6,4 +6,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <StartArguments>analyze d:\repros\test.sql  --config default</StartArguments>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartArguments>analyze c:\repros\test.sql --verbose --config default -o out.sarif</StartArguments>
+  </PropertyGroup>
 </Project>
