@@ -7,4 +7,5 @@
 bin/
 obj/
 src/packages/
-src/TestResults
+src/TestResults/
+src/SqlSkim.Driver.FunctionalTests/RulesTestData/Actual/
