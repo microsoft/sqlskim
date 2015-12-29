@@ -15,6 +15,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., build.props))\build.props" />
   <ItemGroup>
     <Reference Include="CommandLine, Version=2.0.275.0, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
@@ -25,12 +29,12 @@
       <HintPath>..\packages\Microsoft.SqlServer.TransactSql.ScriptDom.12.0.1\lib\net40\Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sarif, Version=1.4.14.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sarif.Sdk.1.4.14-beta\lib\net40\Sarif.dll</HintPath>
+    <Reference Include="Sarif, Version=1.4.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sarif.Sdk.1.4.16-beta\lib\net40\Sarif.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sarif.Driver, Version=1.0.14.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sarif.Driver.1.0.14-beta\lib\net40\Sarif.Driver.dll</HintPath>
+    <Reference Include="Sarif.Driver, Version=1.0.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sarif.Driver.1.0.16-beta\lib\net40\Sarif.Driver.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -47,10 +51,12 @@
     <Compile Include="AnalyzeOptions.cs" />
     <Compile Include="ExportConfigurationCommand.cs" />
     <Compile Include="ExportRulesCommand.cs" />
-    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\Shared\SharedAssemblyInfo.cs" />
     <Compile Include="SqlSkim.cs" />
+    <Compile Include="..\..\..\..\repros\TSqlAnalyzer.cs">
+      <Link>TSqlAnalyzer.cs</Link>
+    </Compile>
     <Compile Include="VisitCommand.cs" />
     <Compile Include="VisitOptions.cs" />
   </ItemGroup>

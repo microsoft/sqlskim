@@ -78,8 +78,38 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
 
         public override void Analyze(SqlFileContext context)
         {
-            var visitor = new Visitor(context);
-            context.GetTSqlFragment().Accept(visitor);
+            ColumnDefinition node = (ColumnDefinition)context.Fragment;
+
+            SqlDataTypeReference sdtr = node.DataType as SqlDataTypeReference;
+            if (sdtr == null) { return; }
+
+            if (sdtr.SqlDataTypeOption != SqlDataTypeOption.VarBinary &&
+                sdtr.SqlDataTypeOption != SqlDataTypeOption.VarChar &&
+                sdtr.SqlDataTypeOption != SqlDataTypeOption.NVarChar)
+            {
+
+                return;
+            }
+
+            if (sdtr.Parameters.Count > 0)
+            {
+                Region region = sdtr.CreateRegion();
+
+                int size = Int32.Parse(sdtr.Parameters[0].Value);
+
+                if (size <= context.Policy.GetProperty(SmallSizeThreshold))
+                {
+                    // The data type for column '{0}' was defined as {1} of a 
+                    // small size ({2}) which may incur additional storage and 
+                    // performance costs. Declare this data type as a fixed size
+                    // or ignore the warning in cases performance is not a concern.
+                    context.Logger.Log(ResultKind.Warning, context, region,
+                        nameof(RuleResources.SQL2009_Default),
+                        node.ColumnIdentifier.Value,
+                        sdtr.SqlDataTypeOption.ToString(),
+                        size.ToString());
+                }
+            }
             return;
         }
 
@@ -87,47 +117,7 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
         {
             get
             {
-                return new Type[] { typeof(SqlDataTypeReference) };
-            }
-        }
-
-        private class Visitor : TSqlFragmentVisitor
-        {
-            private SqlFileContext context;
-
-            public Visitor(SqlFileContext context) { this.context = context; }
-
-            public override void Visit(ColumnDefinition node)
-            {
-                SqlDataTypeReference sdtr = node.DataType as SqlDataTypeReference;
-                if (sdtr == null) { return; }
-
-                if (sdtr.SqlDataTypeOption != SqlDataTypeOption.VarBinary &&
-                    sdtr.SqlDataTypeOption != SqlDataTypeOption.VarChar &&
-                    sdtr.SqlDataTypeOption != SqlDataTypeOption.NVarChar)
-                {
-
-                    return;
-                }
-
-                if (sdtr.Parameters.Count > 0)
-                {
-                    int size = Int32.Parse(sdtr.Parameters[0].Value);
-
-                    if (size <= context.Policy.GetProperty(SmallSizeThreshold))
-                    {
-                        // The data type for column '{0}' was defined as {1} of a 
-                        // small size ({2}) which may incur additional storage and 
-                        // performance costs. Declare this data type as a fixed size
-                        // or ignore the warning in cases performance is not a concern.
-                        this.context.Logger.Log(ResultKind.Warning, 
-                            this.context, 
-                            nameof(RuleResources.SQL2009_Default),
-                            node.ColumnIdentifier.Value,
-                            sdtr.SqlDataTypeOption.ToString(),
-                            size.ToString());
-                    }
-                }
+                return new Type[] { typeof(ColumnDefinition) };
             }
         }
     }

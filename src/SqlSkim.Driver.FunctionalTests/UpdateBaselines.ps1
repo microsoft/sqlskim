@@ -11,7 +11,7 @@ function Build-Tool()
     Write-Host "Building the tool..."  -NoNewline
     # Out-Null *and* /noconsolelogger here because our scripts call out to batch files and similar
     # that don't respect msbuild's /noconsolelogger switch.
-    #msbuild $PSScriptRoot\..\$tool.Driver\$tool.Driver.csproj /p:"Platform=AnyCPU`;Configuration=Release" /m 
+    msbuild $PSScriptRoot\..\$tool.Driver\$tool.Driver.csproj /p:"Platform=AnyCPU`;Configuration=Release" /m 
     Write-Host " done."
 }
 
