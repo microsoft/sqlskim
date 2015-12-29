@@ -32,12 +32,18 @@ namespace Microsoft.CodeAnalysis.Sql
             }
         }
 
-        public TSqlFragment GetTSqlFragment()
+        public IList<ParseError> TryGetTSqlFragment(out TSqlFragment fragment)
         {
+            IList<ParseError> errors;
+
             if (this.tsqlFragment != null)
             {
-                return this.tsqlFragment;
+                fragment = this.tsqlFragment;
+                return null;
             }
+
+            errors = null;
+            fragment = null;
 
             lock (this.lockObject)
             {
@@ -45,21 +51,18 @@ namespace Microsoft.CodeAnalysis.Sql
                 {
                     var parser = new TSql120Parser(initialQuotedIdentifiers: false);
 
-                    IList<ParseError> errors;
                     using (StringReader reader = new StringReader(File.ReadAllText(TargetUri.LocalPath)))
                     {
                         this.tsqlFragment = parser.Parse(reader, out errors);
                     }
-
-                    if (errors.Count > 0)
-                    {
-                        // TODO 
-                        throw new InvalidOperationException();
-                    }
                 }
             }
-            return this.tsqlFragment;
+
+            fragment = this.tsqlFragment;
+            return errors;
         }
+
+        public TSqlFragment Fragment { get; set; }
 
         public IResultLogger Logger { get; set; }
 

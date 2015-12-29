@@ -64,10 +64,10 @@ namespace Microsoft.CodeAnalysis.Sql
 
                 string message = ConsoleLogger.GetMessageText(
                     context.TargetUri, 
+                    region,
                     ErrorDescriptors.ParseError.Id, 
                     parseError.Message, 
-                    ResultKind.Error, 
-                    region);
+                    ResultKind.Error);
 
                 Console.WriteLine(message);
             }
