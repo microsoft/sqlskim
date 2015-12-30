@@ -7,7 +7,7 @@
     <StartArguments>analyze d:\repros\test.sql  --config default</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>analyze --config default d:\repros\test.sql --verbose</StartArguments>
+    <StartArguments>analyze --config default d:\repros\test.sql --verbose -o out.sarif</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartArguments>analyze "d:\src\sqlskim-ms\src\SqlSkim.Driver.FunctionalTests\RulesTestData\AvoidVariableLengthTypesOfSmallSize.sql"</StartArguments>
