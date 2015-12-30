@@ -18,7 +18,7 @@
       "results": [
         {
           "ruleId": "MSG1001",
-          "kind": "Note",
+          "kind": "note",
           "formattedMessage": {
             "specifierId": "AnalyzingTarget",
             "arguments": [
@@ -38,7 +38,7 @@
         },
         {
           "ruleId": "SQL2009",
-          "kind": "Warning",
+          "kind": "warning",
           "formattedMessage": {
             "specifierId": "Default",
             "arguments": [
@@ -65,7 +65,7 @@
         },
         {
           "ruleId": "SQL2009",
-          "kind": "Warning",
+          "kind": "warning",
           "formattedMessage": {
             "specifierId": "Default",
             "arguments": [
@@ -92,7 +92,7 @@
         },
         {
           "ruleId": "SQL2009",
-          "kind": "Warning",
+          "kind": "warning",
           "formattedMessage": {
             "specifierId": "Default",
             "arguments": [

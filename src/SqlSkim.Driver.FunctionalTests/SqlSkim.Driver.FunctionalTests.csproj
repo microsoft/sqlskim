@@ -20,16 +20,16 @@
   </PropertyGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., build.props))\build.props" />
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sarif, Version=1.4.16.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sarif.Sdk.1.4.16-beta\lib\net40\Sarif.dll</HintPath>
+    <Reference Include="Sarif, Version=1.4.22.0, Culture=neutral, PublicKeyToken=ac41962ee2e3a7cd, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sarif.Sdk.1.4.22-beta\lib\net40\Sarif.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sarif.Driver, Version=1.0.16.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sarif.Driver.1.0.16-beta\lib\net40\Sarif.Driver.dll</HintPath>
+    <Reference Include="Sarif.Driver, Version=1.4.22.0, Culture=neutral, PublicKeyToken=ac41962ee2e3a7cd, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sarif.Driver.1.4.22-beta\lib\net40\Sarif.Driver.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -73,6 +73,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="UpdateBaselines.ps1" />
   </ItemGroup>
