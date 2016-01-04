@@ -3,9 +3,9 @@
   <metadata>
     <id>$id$</id>
     <version>$major$.$minor$.$patch$$prerelease$</version>
-    <title>Microsoft SqlSkim Analysis Tools (x86/x64)</title>
-    <authors>@michaelcfanning,@nguerrera</authors>
-    <owners>@michaelcfanning,@nguerrera</owners>
+    <title>Microsoft SqlSkim Analysis Tools</title>
+    <authors>Michael C. Fanning,David Brookler,Nick Guerrera, </authors>
+    <owners>Michael C. Fanning</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A database and TSQL checker</description>
     <releaseNotes>Version $major$.$minor$.$patch$$prerelease$ of SqlSkim</releaseNotes>
@@ -15,25 +15,15 @@
     <tags>sql tsql linter security</tags>
   </metadata>
   <files>
-    <!-- tools\x64 -->
-    <file src="x64_Release\SqlSkim.exe" target="tools\x64" />
-    <file src="x64_Release\SqlSkim.pdb" target="tools\x64" />
-    <file src="x64_Release\SqlSkim.Parsers.dll" target="tools\x64" />
-    <file src="x64_Release\SqlSkim.Parsers.pdb" target="tools\x64" />
-    <file src="x64_Release\SqlSkim.Sdk.dll" target="tools\x64" />
-    <file src="x64_Release\SqlSkim.Sdk.pdb" target="tools\x64" />
-    <file src="x64_Release\SqlSkim.Rules.dll" target="tools\x64" />
-    <file src="x64_Release\SqlSkim.Rules.pdb" target="tools\x64" />
-
-    <!-- tools\x86 -->
-    <file src="x86_Release\SqlSkim.exe" target="tools\x86" />
-    <file src="x86_Release\SqlSkim.pdb" target="tools\x86" />
-    <file src="x86_Release\SqlSkim.Parsers.dll" target="tools\x86" />
-    <file src="x86_Release\SqlSkim.Parsers.pdb" target="tools\x86" />
-    <file src="x86_Release\SqlSkim.Sdk.dll" target="tools\x86" />
-    <file src="x86_Release\SqlSkim.Sdk.pdb" target="tools\x86" />
-    <file src="x86_Release\SqlSkim.Rules.dll" target="tools\x86" />
-    <file src="x86_Release\SqlSkim.Rules.pdb" target="tools\x86" />
+    <!-- tools -->
+    <file src="AnyCpu_Release\SqlSkim.exe" target="tools" />
+    <file src="AnyCpu_Release\SqlSkim.pdb" target="tools" />
+    <file src="AnyCpu_Release\SqlSkim.Parsers.dll" target="tools" />
+    <file src="AnyCpu_Release\SqlSkim.Parsers.pdb" target="tools" />
+    <file src="AnyCpu_Release\SqlSkim.Sdk.dll" target="tools" />
+    <file src="AnyCpu_Release\SqlSkim.Sdk.pdb" target="tools" />
+    <file src="AnyCpu_Release\SqlSkim.Rules.dll" target="tools" />
+    <file src="AnyCpu_Release\SqlSkim.Rules.pdb" target="tools" />
 
     <file src="..\..\..\src\SqlSkim.Parsers\**\*.cs" target="src\SqlSkim.Parsers" />
     <file src="..\..\..\src\SqlSkim.Driver\**\*.cs" target="src\SqlSkim.Driver" />

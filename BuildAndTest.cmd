@@ -1,3 +1,4 @@
+@echo off
 SETLOCAL
 @REM Uncomment this line to update nuget.exe
 @REM Doing so can break SLN build (which uses nuget.exe to
@@ -6,7 +7,7 @@ SETLOCAL
 
 set MAJOR=0
 set MINOR=1
-set PATCH=0
+set PATCH=1
 set PRERELEASE=-beta
 
 set VERSION_CONSTANTS=src\SqlSkim.Parsers\VersionConstants.cs
@@ -28,10 +29,9 @@ echo     }                                                                      
 echo  }                                                                             >> %VERSION_CONSTANTS%
 
 %~dp0.nuget\NuGet.exe restore src\SqlSkim.sln 
-msbuild /verbosity:minimal /target:rebuild src\SqlSkim.sln /p:Configuration=Release /p:"Platform=x64"
-msbuild /verbosity:minimal /target:rebuild src\SqlSkim.sln /p:Configuration=Release /p:"Platform=x86"
+msbuild /verbosity:minimal /target:rebuild src\SqlSkim.sln /p:Configuration=Release /p:"Platform=Any CPU"
 md bld\bin\nuget
 
-.nuget\NuGet.exe pack .\src\Nuget\SqlSkim.nuspec -Symbols -Properties id=SqlSkim;major=%MAJOR%;minor=%MINOR%;patch=%PATCH%;prerelease=%PRERELEASE% -Verbosity Quiet -BasePath .\bld\bin\SqlSkim.Driver -OutputDirectory .\bld\bin\Nuget
+.nuget\NuGet.exe pack .\src\Nuget\SqlSkim.nuspec -Symbols -Properties id=Microsoft.CodeAnalysis.SqlSkim;major=%MAJOR%;minor=%MINOR%;patch=%PATCH%;prerelease=%PRERELEASE% -Verbosity Quiet -BasePath .\bld\bin\SqlSkim.Driver -OutputDirectory .\bld\bin\Nuget
 
-src\packages\xunit.runner.console.2.1.0\tools\xunit.console.x86.exe bld\bin\SqlSkim.Driver.UnitTests\x86_Release\SqlSkim.Driver.UnitTests.dll
+src\packages\xunit.runner.console.2.1.0\tools\xunit.console.x86.exe bld\bin\SqlSkim.Driver.UnitTests\AnyCpu_Release\SqlSkim.Driver.UnitTests.dll
