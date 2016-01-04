@@ -41,7 +41,7 @@ namespace Microsoft.CodeAnalysis.Sql
             {
                 foreach (ParseError parseError in parseErrors)
                 {
-                    LogTargetParseError(context, parseError.CreateRegion(), parseError.Message);
+                    Errors.LogTargetParseError(context, parseError.CreateRegion(), parseError.Message);
                 }
                 return;
             }

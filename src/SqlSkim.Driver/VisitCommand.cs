@@ -52,7 +52,7 @@ namespace Microsoft.CodeAnalysis.Sql
             SqlFileContext context = new SqlFileContext()
             {
                 TargetUri = new Uri(filePath, UriKind.Absolute),
-                Rule = ErrorDescriptors.ParseError
+                Rule = Errors.ParseError
             };
 
             foreach (ParseError parseError in errors)
@@ -65,7 +65,7 @@ namespace Microsoft.CodeAnalysis.Sql
                 string message = ConsoleLogger.GetMessageText(
                     context.TargetUri, 
                     region,
-                    ErrorDescriptors.ParseError.Id, 
+                    Errors.ParseError.Id, 
                     parseError.Message, 
                     ResultKind.Error);
 

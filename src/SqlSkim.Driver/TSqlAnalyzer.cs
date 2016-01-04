@@ -10,9 +10,8 @@ namespace Microsoft.CodeAnalysis.Sql.Sdk
 {
     public class TSqlAnalyzer
     {
-        private SqlFileContext context;
-        private HashSet<string> disabledSkimmers;
-        private Dictionary<Type, List<ISkimmer<SqlFileContext>>> typeToSkimmersMap;
+        HashSet<string> disabledSkimmers;
+        Dictionary<Type, List<ISkimmer<SqlFileContext>>> typeToSkimmersMap;
 
         public RuntimeConditions RuntimeErrors { get; set; }
 
@@ -40,36 +39,35 @@ namespace Microsoft.CodeAnalysis.Sql.Sdk
 
         public void Analyze(SqlFileContext context)
         {
-            this.context = context;
-            var visitor = new AllNodesVisitor(NodeAction);
-            this.context.Fragment.Accept(visitor);
-        }
-
-        private void NodeAction(TSqlFragment node)
-        {
-            List<ISkimmer<SqlFileContext>> skimmersList;
-
-            if (node == null) { return; }
-
-            if (this.typeToSkimmersMap.TryGetValue(node.GetType(), out skimmersList))
-            {
-                foreach (ISqlSkimmer skimmer in skimmersList)
+            var visitor = new AllNodesVisitor(
+                (node) =>
                 {
-                    this.context.Fragment = node;
-                    try
+                    List<ISkimmer<SqlFileContext>> skimmersList;
+
+                    if (node == null) { return; }
+
+                    if (this.typeToSkimmersMap.TryGetValue(node.GetType(), out skimmersList))
                     {
-                        skimmer.Analyze(this.context);
-                    }
-                    catch (Exception ex)
-                    {
-                        RuntimeErrors |= AnalyzeCommand.LogUnhandledRuleExceptionAnalyzingTarget(
-                            this.disabledSkimmers,
-                            this.context,
-                            skimmer,
-                            ex);
+                        foreach (ISqlSkimmer skimmer in skimmersList)
+                        {
+                            context.Fragment = node;
+                            try
+                            {
+                                skimmer.Analyze(context);
+                            }
+                            catch (Exception ex)
+                            {
+                                RuntimeErrors |= AnalyzeCommand.LogUnhandledRuleExceptionAnalyzingTarget(
+                                    this.disabledSkimmers,
+                                    context,
+                                    skimmer,
+                                    ex);
+                            }
+                        }
                     }
                 }
-            }
+                );
+            context.Fragment.Accept(visitor);
         }
     }
 }

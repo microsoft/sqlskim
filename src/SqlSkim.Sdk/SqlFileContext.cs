@@ -64,7 +64,7 @@ namespace Microsoft.CodeAnalysis.Sql
 
         public TSqlFragment Fragment { get; set; }
 
-        public IResultLogger Logger { get; set; }
+        public IAnalysisLogger Logger { get; set; }
 
         public PropertyBag Policy { get; set; }
 
@@ -73,6 +73,10 @@ namespace Microsoft.CodeAnalysis.Sql
         public Exception TargetLoadException { get; set; }
 
         public Uri TargetUri { get; set; }
+
+        public string MimeType { get; set; }
+
+        public RuntimeConditions RuntimeErrors { get; set; }
 
         public void Dispose()
         {

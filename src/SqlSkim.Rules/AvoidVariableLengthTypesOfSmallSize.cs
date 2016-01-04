@@ -103,11 +103,12 @@ namespace Microsoft.CodeAnalysis.Sql.Rules
                     // small size ({2}) which may incur additional storage and 
                     // performance costs. Declare this data type as a fixed size
                     // or ignore the warning in cases performance is not a concern.
-                    context.Logger.Log(ResultKind.Warning, context, region,
-                        nameof(RuleResources.SQL2009_Default),
-                        node.ColumnIdentifier.Value,
-                        sdtr.SqlDataTypeOption.ToString(),
-                        size.ToString());
+                    context.Logger.Log(this, 
+                        RuleUtilities.BuildResult(ResultKind.Warning, context, region,
+                            nameof(RuleResources.SQL2009_Default),
+                            node.ColumnIdentifier.Value,
+                            sdtr.SqlDataTypeOption.ToString(),
+                            size.ToString()));
                 }
             }
             return;
