@@ -4,8 +4,8 @@
     {
       "toolInfo": {
         "name": "SqlSkim",
-        "fullName": "SqlSkim 0.1.0-beta",
-        "version": "0.1.0"
+        "fullName": "SqlSkim 0.1.1-beta",
+        "version": "0.1.1"
       },
       "runInfo": {
         "invocationInfo": "\"D:\\src\\sqlskim-ms\\bld\\bin\\SqlSkim.Driver\\AnyCPU_Release\\SqlSkim.exe\" analyze D:\\src\\sqlskim-ms\\src\\SqlSkim.Driver.FunctionalTests\\RulesTestData\\AvoidVariableLengthTypesOfSmallSize.sql --output D:\\src\\sqlskim-ms\\src\\SqlSkim.Driver.FunctionalTests\\RulesTestData\\Expected\\AvoidVariableLengthTypesOfSmallSize.sql.sarif.temp --verbose --config default",
@@ -29,8 +29,7 @@
             {
               "analysisTarget": [
                 {
-                  "uri": "file:///D:/src/sqlskim-ms/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql",
-                  "mimeType": "application/octet-stream"
+                  "uri": "file:///D:/src/sqlskim-ms/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql"
                 }
               ]
             }
@@ -42,6 +41,7 @@
           "formattedMessage": {
             "specifierId": "Default",
             "arguments": [
+              "AvoidVariableLengthTypesOfSmallSize.sql",
               "SmallBinary",
               "VarBinary",
               "1"
@@ -52,7 +52,6 @@
               "analysisTarget": [
                 {
                   "uri": "file:///D:/src/sqlskim-ms/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql",
-                  "mimeType": "application/octet-stream",
                   "region": {
                     "startLine": 7,
                     "startColumn": 15,
@@ -69,6 +68,7 @@
           "formattedMessage": {
             "specifierId": "Default",
             "arguments": [
+              "AvoidVariableLengthTypesOfSmallSize.sql",
               "SmallUnicodeString",
               "NVarChar",
               "1"
@@ -79,7 +79,6 @@
               "analysisTarget": [
                 {
                   "uri": "file:///D:/src/sqlskim-ms/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql",
-                  "mimeType": "application/octet-stream",
                   "region": {
                     "startLine": 8,
                     "startColumn": 22,
@@ -96,6 +95,7 @@
           "formattedMessage": {
             "specifierId": "Default",
             "arguments": [
+              "AvoidVariableLengthTypesOfSmallSize.sql",
               "SmallString",
               "VarChar",
               "2"
@@ -106,7 +106,6 @@
               "analysisTarget": [
                 {
                   "uri": "file:///D:/src/sqlskim-ms/src/SqlSkim.Driver.FunctionalTests/RulesTestData/AvoidVariableLengthTypesOfSmallSize.sql",
-                  "mimeType": "application/octet-stream",
                   "region": {
                     "startLine": 9,
                     "startColumn": 15,
@@ -121,10 +120,9 @@
       "ruleInfo": [
         {
           "id": "MSG1001",
-          "name": "GeneralMessage",
-          "fullDescription": "An informational output message was logged.",
+          "name": "AnalyzingTarget",
+          "fullDescription": "An analysis target was analyzed.",
           "formatSpecifiers": {
-            "Default": "{0}",
             "AnalyzingTarget": "Analyzing '{0}'..."
           }
         },
