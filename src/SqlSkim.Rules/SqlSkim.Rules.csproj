@@ -63,6 +63,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleRule.cs" />
     <Compile Include="AvoidVariableLengthTypesOfSmallSize.cs" />
     <Compile Include="DefaultSqlSkimmer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

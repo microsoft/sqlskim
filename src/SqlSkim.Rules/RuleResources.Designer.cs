@@ -81,9 +81,9 @@ namespace Microsoft.CodeAnalysis.Sql.Rules {
         /// <summary>
         ///   Looks up a localized string similar to The data type for column &apos;{0}&apos; was defined as type {1} of size ({2}) which may incur additional storage and performance costs over a fixed length type. Declare this column as a fixed size data type or ignore the warning if performance is not a concern..
         /// </summary>
-        internal static string SQL2009_Default {
+        internal static string SQL2009_Fail {
             get {
-                return ResourceManager.GetString("SQL2009_Default", resourceCulture);
+                return ResourceManager.GetString("SQL2009_Fail", resourceCulture);
             }
         }
         

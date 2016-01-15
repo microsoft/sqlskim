@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
 using Microsoft.CodeAnalysis.Sarif.Sdk;
 
-using Microsoft.SqlServer.TransactSql.ScriptDom;
-
 namespace Microsoft.CodeAnalysis.Sql.Sdk
 {
     public interface ISqlSkimmer : ISkimmer<SqlFileContext>, IRuleDescriptor

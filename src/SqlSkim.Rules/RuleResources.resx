@@ -123,7 +123,7 @@
   <data name="SQL2009_AvoidVariableLengthTypesOfSmallSize_Description" xml:space="preserve">
     <value>When you use data types of variable length such as VARCHAR, NVARCHAR, and VARBINARY, you incur an additional storage cost to track the length of the value stored in the data type. In addition, columns of variable length are stored after all columns of fixed length, which can have performance implications. This rule also fires in cases where a type of variable length, such as VARCHAR, is declared with no explicit length. In this case, if specified, the default length is 1. Note that data for types of variable length is physically stored after data for types of fixed length. Therefore, you will cause data movement if you change a column from variable to fixed length in a table that is not empty.</value>
   </data>
-  <data name="SQL2009_Default" xml:space="preserve">
+  <data name="SQL2009_Fail" xml:space="preserve">
     <value>The data type for column '{0}' was defined as type {1} of size ({2}) which may incur additional storage and performance costs over a fixed length type. Declare this column as a fixed size data type or ignore the warning if performance is not a concern.</value>
   </data>
   <data name="SQL2009_MissingConfig" xml:space="preserve">

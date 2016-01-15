@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis.Sarif.Driver.Sdk;
-using Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Microsoft.CodeAnalysis.Sql.Sdk
 {
